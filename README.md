@@ -59,7 +59,7 @@ colorPicker/
 
 ## GitHub Pages
 
-Repo → Settings → Pages → Source: **GitHub Actions**. After that, every push to `main` deploys the app via the `Deploy Pages` workflow (static file, no build).
+Every push to `main` deploys the app via the `Deploy Pages` workflow (static file, no build). The workflow auto-enables Pages on first run; to host on a custom domain, set it under Repo → Settings → Pages.
 
 ## Tech notes
 
