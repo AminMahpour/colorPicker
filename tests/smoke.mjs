@@ -1,5 +1,5 @@
 import { spawn, execSync } from "node:child_process";
-import { mkdtempSync } from "node:fs";
+import { mkdtempSync, readFileSync, openSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
@@ -25,18 +25,23 @@ function findChrome() {
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
+const userDataDir = mkdtempSync(join(tmpdir(), "chroma-smoke-"));
+const chromeLog = join(userDataDir, "chrome.log");
 const chrome = spawn(findChrome(), [
-  "--headless",
+  "--headless=new",
   "--no-sandbox",
   "--disable-gpu",
+  "--disable-dev-shm-usage",
+  "--no-first-run",
+  "--no-default-browser-check",
   `--remote-debugging-port=${PORT}`,
-  `--user-data-dir=${mkdtempSync(join(tmpdir(), "chroma-smoke-"))}`,
+  `--user-data-dir=${userDataDir}`,
   `file://${join(ROOT, "index.html")}`
-], { stdio: "ignore" });
+], { stdio: ["ignore", "ignore", openSync(chromeLog, "w")] });
 
 let ws;
 async function connect() {
-  for (let i = 0; i < 40; i++) {
+  for (let i = 0; i < 120; i++) {
     try {
       const tabs = await (await fetch(`http://127.0.0.1:${PORT}/json`)).json();
       const page = tabs.find((t) => t.type === "page");
@@ -48,6 +53,7 @@ async function connect() {
     } catch { /* not ready yet */ }
     await sleep(500);
   }
+  try { console.error("--- chrome log ---\n" + readFileSync(chromeLog, "utf8").slice(-3000)); } catch { /* none */ }
   throw new Error("Chrome CDP never became available");
 }
 
