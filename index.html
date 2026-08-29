@@ -728,6 +728,184 @@
   .css-box .prop { color: #8fd0ff; }
   .css-box .val { color: #ffd9a0; }
 
+  /* ---------- wheel a11y / dynamic dots ---------- */
+  .wheel-wrap:focus-visible, .slider:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .wheel-dots { position: absolute; inset: 0; pointer-events: none; }
+
+  /* ---------- harmony select ---------- */
+  .harmony select {
+    font: inherit;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text);
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 4px 6px;
+    outline: none;
+    cursor: pointer;
+    letter-spacing: 0.3px;
+    text-transform: none;
+  }
+
+  .harmony .label .lhs { display: flex; align-items: center; gap: 8px; }
+
+  .shade-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+  }
+
+  .shade {
+    height: 30px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.12s ease;
+    background-color: #e8e8ee;
+    background-image:
+      linear-gradient(45deg, #c9c9d4 25%, transparent 25%, transparent 75%, #c9c9d4 75%),
+      linear-gradient(45deg, #c9c9d4 25%, transparent 25%, transparent 75%, #c9c9d4 75%);
+    background-size: 10px 10px;
+    background-position: 0 0, 5px 5px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shade .fill { position: absolute; inset: 0; }
+  .shade:hover { transform: scale(1.08); }
+
+  .named { color: var(--dim); font-size: 11.5px; letter-spacing: 0.3px; }
+
+  /* ---------- contrast checker ---------- */
+  .contrast { display: flex; flex-direction: column; gap: 10px; border-top: 1px solid var(--border); padding-top: 16px; }
+
+  .contrast .row2 { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+
+  .contrast input[type="color"] {
+    appearance: none; -webkit-appearance: none;
+    width: 40px; height: 34px; border: 1px solid var(--border); border-radius: 9px;
+    background: transparent; padding: 0; cursor: pointer;
+  }
+  .contrast input[type="color"]::-webkit-color-swatch-wrapper { padding: 3px; }
+  .contrast input[type="color"]::-webkit-color-swatch { border: none; border-radius: 6px; }
+  .contrast input[type="color"]::-moz-color-swatch { border: none; border-radius: 6px; }
+
+  .contrast-preview {
+    flex: 1;
+    min-width: 160px;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-weight: 700;
+    font-size: 15px;
+    border: 1px solid var(--border);
+    cursor: default;
+  }
+
+  .ratio-line { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .ratio-line .ratio { font-size: 22px; font-weight: 800; font-variant-numeric: tabular-nums; }
+
+  .badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    color: var(--dim);
+    letter-spacing: 0.4px;
+  }
+  .badge.pass { color: #7bf2a8; border-color: rgba(90,230,140,0.45); background: rgba(90,230,140,0.08); }
+  .badge.fail { color: #ff8f8f; border-color: rgba(255,120,120,0.4); background: rgba(255,120,120,0.07); }
+
+  /* ---------- palettes ---------- */
+  .palettes { display: flex; flex-direction: column; gap: 10px; border-top: 1px solid var(--border); padding-top: 16px; }
+  .palette-row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .palette-empty { color: var(--dim); font-size: 12.5px; }
+
+  .pchip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 5px 8px;
+    background: rgba(0,0,0,0.25);
+  }
+  .pchip .pstrip { display: flex; border-radius: 6px; overflow: hidden; cursor: pointer; }
+  .pchip .pstrip .psw { width: 22px; height: 26px; border: none; padding: 0; cursor: pointer; position: relative; background: #e8e8ee; }
+  .pchip .pstrip .psw .fill { position: absolute; inset: 0; }
+  .pchip .pname { font-size: 12px; font-weight: 600; cursor: pointer; }
+  .pchip .pdel { appearance: none; background: none; border: none; color: var(--dim); font-size: 14px; cursor: pointer; padding: 2px; }
+  .pchip .pdel:hover { color: #ff8f8f; }
+
+  /* ---------- gradient extras ---------- */
+  .gpreview.dial { cursor: grab; }
+  .gpreview.dial:active { cursor: grabbing; }
+
+  .toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--dim);
+    cursor: pointer;
+    user-select: none;
+  }
+  .toggle input { accent-color: var(--accent); width: 15px; height: 15px; cursor: pointer; }
+
+  .preset-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+
+  .preset {
+    appearance: none;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 0;
+    cursor: pointer;
+    background: none;
+    transition: transform 0.12s ease;
+  }
+  .preset:hover { transform: translateY(-2px); }
+  .preset.active { border-color: rgba(255,255,255,0.55); box-shadow: 0 0 0 2px rgba(255,255,255,0.18); }
+  .preset .pg { height: 34px; }
+  .preset .pn {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--dim);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 4px 2px 5px;
+    background: rgba(0,0,0,0.3);
+  }
+
+  .stop-editor input[type="range"] {
+    width: 100%;
+    appearance: none;
+    height: 6px;
+    border-radius: 3px;
+    background: rgba(255,255,255,0.15);
+    outline: none;
+    cursor: pointer;
+  }
+  .stop-editor input[type="range"]::-webkit-slider-thumb {
+    appearance: none; width: 16px; height: 16px; border-radius: 50%;
+    background: #fff; box-shadow: 0 1px 5px rgba(0,0,0,0.5); cursor: grab;
+  }
+  .stop-editor input[type="range"]::-moz-range-thumb {
+    width: 16px; height: 16px; border: none; border-radius: 50%;
+    background: #fff; box-shadow: 0 1px 5px rgba(0,0,0,0.5); cursor: grab;
+  }
+
+  .btn.small { padding: 6px 12px; font-size: 12.5px; }
+  .css-box .top .grp { display: flex; gap: 6px; }
+
   /* ---------- toast ---------- */
   .toast {
     position: fixed;
@@ -777,33 +955,35 @@
           <small>Color &amp; gradient picker</small>
         </div>
       </div>
-      <nav class="tabs" role="tablist">
-        <button data-mode="color" class="active" role="tab">Color</button>
-        <button data-mode="gradient" role="tab">Gradient</button>
-      </nav>
+      <div style="display:flex;gap:10px;align-items:center">
+        <nav class="tabs" role="tablist">
+          <button data-mode="color" class="active" role="tab">Color</button>
+          <button data-mode="gradient" role="tab">Gradient</button>
+        </nav>
+        <button class="btn" id="shareBtn" title="Copy shareable link">🔗 Share</button>
+      </div>
     </header>
 
     <!-- ============ COLOR PANEL ============ -->
     <main class="panel card" id="colorPanel" style="padding: 26px;">
       <div class="picker-card">
-        <div class="wheel-wrap" id="wheelWrap" role="slider" aria-label="Hue and saturation">
+        <div class="wheel-wrap" id="wheelWrap" role="slider" tabindex="0" aria-label="Hue and saturation" aria-valuemin="0" aria-valuemax="360">
           <canvas id="wheelCanvas" width="600" height="600"></canvas>
-          <svg class="triad-tri" id="triadTri" viewBox="0 0 100 100">
-            <polygon id="triadPoly" points="" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="1.5" stroke-linejoin="round" vector-effect="non-scaling-stroke"></polygon>
+          <svg class="triad-tri" id="harmSvg" viewBox="0 0 100 100">
+            <polygon id="harmPoly" points="" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="1.5" stroke-linejoin="round" vector-effect="non-scaling-stroke"></polygon>
           </svg>
-          <div class="wheel-dot" id="triadDot1"></div>
-          <div class="wheel-dot" id="triadDot2"></div>
+          <div class="wheel-dots" id="wheelDots"></div>
           <div class="wheel-knob" id="wheelKnob"></div>
         </div>
         <div class="sliders">
           <div>
-            <div class="slider" id="valueSlider" role="slider" aria-label="Value">
+            <div class="slider" id="valueSlider" role="slider" tabindex="0" aria-label="Value" aria-valuemin="0" aria-valuemax="100">
               <div class="knob" id="valueKnob"></div>
             </div>
             <div class="slider-labels"><span>0%</span><span>VALUE</span><span>100%</span></div>
           </div>
           <div>
-            <div class="slider" id="alphaSlider" role="slider" aria-label="Alpha">
+            <div class="slider" id="alphaSlider" role="slider" tabindex="0" aria-label="Alpha" aria-valuemin="0" aria-valuemax="100">
               <div id="alphaFill"></div>
               <div class="knob" id="alphaKnob"></div>
             </div>
@@ -818,6 +998,7 @@
           <div class="swatch-meta">
             <div class="big" id="bigHex">#000000</div>
             <div class="sub" id="bigSub">rgb(0, 0, 0)</div>
+            <div class="named" id="bigName"></div>
           </div>
         </div>
 
@@ -846,14 +1027,53 @@
         <div class="actions">
           <button class="btn primary" id="randomBtn">🎲 Random color</button>
           <button class="btn" id="saveBtn">+ Save to history</button>
+          <button class="btn" id="eyedropperBtn" hidden>🎯 Eyedropper</button>
         </div>
 
         <div class="harmony">
           <div class="label">
-            <span>Color triads</span>
-            <button id="copyTriads">Copy all</button>
+            <div class="lhs">
+              <span>Harmony</span>
+              <select id="harmMode" aria-label="Harmony mode">
+                <option value="complementary">Complementary</option>
+                <option value="analogous">Analogous</option>
+                <option value="split">Split complementary</option>
+                <option value="triadic" selected>Triadic</option>
+                <option value="tetradic">Tetradic</option>
+                <option value="monochromatic">Monochromatic</option>
+              </select>
+            </div>
+            <button id="copyHarmony">Copy all</button>
           </div>
-          <div class="triad-row" id="triadRow"></div>
+          <div class="triad-row" id="harmRow"></div>
+        </div>
+
+        <div class="harmony">
+          <div class="label">
+            <span>Shades &amp; tints</span>
+            <button id="copyShades">Copy all</button>
+          </div>
+          <div class="shade-row" id="shadeRow"></div>
+        </div>
+
+        <div class="contrast">
+          <div class="label">
+            <span>Contrast checker</span>
+            <button id="useAsBg">Set bg = current</button>
+          </div>
+          <div class="row2">
+            <div class="contrast-preview" id="contrastPreview">Aa — Sample text</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <input type="color" id="fgColor" aria-label="Text color" />
+              <input type="color" id="bgColor" aria-label="Background color" />
+            </div>
+          </div>
+          <div class="ratio-line">
+            <span class="ratio" id="ratioVal">1.0</span>
+            <span class="badge" id="aaBadge">AA</span>
+            <span class="badge" id="aaLargeBadge">AA Large</span>
+            <span class="badge" id="aaaBadge">AAA</span>
+          </div>
         </div>
 
         <div class="history">
@@ -863,6 +1083,16 @@
           </div>
           <div class="history-strip" id="historyStrip">
             <span class="history-empty">Copied &amp; saved colors appear here.</span>
+          </div>
+        </div>
+
+        <div class="palettes">
+          <div class="label">
+            <span>Saved palettes</span>
+            <button id="savePalette">+ Save harmony</button>
+          </div>
+          <div class="palette-row" id="paletteRow">
+            <span class="palette-empty">Save a harmony set to reuse it later.</span>
           </div>
         </div>
       </div>
@@ -907,6 +1137,13 @@
             <option value="bottom right">Bottom right</option>
           </select>
         </div>
+
+        <label class="toggle">
+          <input type="checkbox" id="smoothToggle" />
+          Smooth interpolation (OKLab) — avoids muddy midtones, longer CSS
+        </label>
+
+        <div class="preset-row" id="presetRow"></div>
       </div>
 
       <div class="card editor-card">
@@ -930,13 +1167,21 @@
             <label for="stopPos">Position</label>
             <input type="number" id="stopPos" min="0" max="100" />
           </div>
+          <div class="field">
+            <label for="stopAlpha">Alpha</label>
+            <input type="range" id="stopAlpha" min="0" max="100" value="100" />
+          </div>
           <button class="btn" id="removeStopBtn">− Remove stop</button>
         </div>
 
         <div class="css-box">
           <div class="top">
             <span>Generated CSS</span>
-            <button class="btn" id="copyCssBtn" style="padding:6px 12px;font-size:12.5px">Copy</button>
+            <div class="grp">
+              <button class="btn small" id="exportPng" title="Download PNG">PNG</button>
+              <button class="btn small" id="exportSvg" title="Download SVG">SVG</button>
+              <button class="btn small" id="copyCssBtn">Copy</button>
+            </div>
           </div>
           <pre id="cssCode"></pre>
         </div>
@@ -955,11 +1200,13 @@
   const state = {
     mode: "color",
     color: { h: 222, s: 82, v: 92, a: 1 },
+    harmonyMode: "triadic",
     gradient: {
       type: "linear",
       angle: 135,
       shape: "circle",
       position: "center",
+      smooth: false,
       stops: [
         { pos: 0, color: { h: 340, s: 85, v: 95, a: 1 } },
         { pos: 55, color: { h: 250, s: 78, v: 88, a: 1 } },
@@ -967,8 +1214,156 @@
       ]
     },
     selectedStop: 0,
-    history: []
+    history: [],
+    palettes: [],
+    contrast: {
+      fg: { h: 0, s: 0, v: 100, a: 1 },
+      bg: { h: 222, s: 82, v: 92, a: 1 }
+    }
   };
+
+  const HARMONY_MODES = {
+    complementary: [0, 180],
+    analogous: [0, 30, 330],
+    split: [0, 150, 210],
+    triadic: [0, 120, 240],
+    tetradic: [0, 90, 180, 270],
+    monochromatic: "mono"
+  };
+
+  const GRADIENT_PRESETS = [
+    { name: "Sunset", type: "linear", angle: 135, shape: "circle", position: "center", stops: [
+      { pos: 0, color: { h: 36, s: 96, v: 99, a: 1 } },
+      { pos: 55, color: { h: 340, s: 85, v: 96, a: 1 } },
+      { pos: 100, color: { h: 275, s: 80, v: 88, a: 1 } } ] },
+    { name: "Ocean", type: "linear", angle: 90, shape: "circle", position: "center", stops: [
+      { pos: 0, color: { h: 195, s: 90, v: 95, a: 1 } },
+      { pos: 100, color: { h: 230, s: 85, v: 70, a: 1 } } ] },
+    { name: "Forest", type: "linear", angle: 160, shape: "circle", position: "center", stops: [
+      { pos: 0, color: { h: 90, s: 70, v: 85, a: 1 } },
+      { pos: 100, color: { h: 165, s: 80, v: 55, a: 1 } } ] },
+    { name: "Peach", type: "radial", angle: 0, shape: "circle", position: "center", stops: [
+      { pos: 0, color: { h: 42, s: 60, v: 100, a: 1 } },
+      { pos: 100, color: { h: 350, s: 75, v: 95, a: 1 } } ] },
+    { name: "Noir", type: "linear", angle: 180, shape: "circle", position: "center", stops: [
+      { pos: 0, color: { h: 0, s: 0, v: 22, a: 1 } },
+      { pos: 50, color: { h: 0, s: 0, v: 8, a: 1 } },
+      { pos: 100, color: { h: 0, s: 0, v: 45, a: 1 } } ] },
+    { name: "Citrus", type: "conic", angle: 0, shape: "circle", position: "center", stops: [
+      { pos: 0, color: { h: 50, s: 95, v: 100, a: 1 } },
+      { pos: 50, color: { h: 90, s: 80, v: 90, a: 1 } },
+      { pos: 100, color: { h: 50, s: 95, v: 100, a: 1 } } ] }
+  ];
+
+  const CSS_NAMED = ("aliceblue:f0f8ff,antiquewhite:faebd7,aqua:00ffff,aquamarine:7fffd4,azure:f0ffff," +
+    "beige:f5f5dc,bisque:ffe4c4,black:000000,blanchedalmond:ffebcd,blue:0000ff,blueviolet:8a2be2," +
+    "brown:a52a2a,burlywood:deb887,cadetblue:5f9ea0,chartreuse:7fff00,chocolate:d2691e,coral:ff7f50," +
+    "cornflowerblue:6495ed,cornsilk:fff8dc,crimson:dc143c,cyan:00ffff,darkblue:00008b,darkcyan:008b8b," +
+    "darkgoldenrod:b8860b,darkgray:a9a9a9,darkgreen:006400,darkkhaki:bdb76b,darkmagenta:8b008b," +
+    "darkolivegreen:556b2f,darkorange:ff8c00,darkorchid:9932cc,darkred:8b0000,darksalmon:e9967a," +
+    "darkseagreen:8fbc8f,darkslateblue:483d8b,darkslategray:2f4f4f,darkturquoise:00ced1,darkviolet:9400d3," +
+    "deeppink:ff1493,deepskyblue:00bfff,dimgray:696969,dodgerblue:1e90ff,firebrick:b22222,floralwhite:fffaf0," +
+    "forestgreen:228b22,fuchsia:ff00ff,gainsboro:dcdcdc,ghostwhite:f8f8ff,gold:ffd700,goldenrod:daa520," +
+    "gray:808080,green:008000,greenyellow:adff2f,honeydew:f0fff0,hotpink:ff69b4,indianred:cd5c5c," +
+    "indigo:4b0082,ivory:fffff0,khaki:f0e68c,lavender:e6e6fa,lavenderblush:fff0f5,lawngreen:7cfc00," +
+    "lemonchiffon:fffacd,lightblue:add8e6,lightcoral:f08080,lightcyan:e0ffff,lightgoldenrodyellow:fafad2," +
+    "lightgray:d3d3d3,lightgreen:90ee90,lightpink:ffb6c1,lightsalmon:ffa07a,lightseagreen:20b2aa," +
+    "lightskyblue:87cefa,lightslategray:778899,lightsteelblue:b0c4de,lightyellow:ffffe0,lime:00ff00," +
+    "limegreen:32cd32,linen:faf0e6,magenta:ff00ff,maroon:800000,mediumaquamarine:66cdaa,mediumblue:0000cd," +
+    "mediumorchid:ba55d3,mediumpurple:9370db,mediumseagreen:3cb371,mediumslateblue:7b68ee," +
+    "mediumspringgreen:00fa9a,mediumturquoise:48d1cc,mediumvioletred:c71585,midnightblue:191970," +
+    "mintcream:f5fffa,mistyrose:ffe4e1,moccasin:ffe4b5,navajowhite:ffdead,navy:000080,oldlace:fdf5e6," +
+    "olive:808000,olivedrab:6b8e23,orange:ffa500,orangered:ff4500,orchid:da70d6,palegoldenrod:eee8aa," +
+    "palegreen:98fb98,paleturquoise:afeeee,palevioletred:db7093,papayawhip:ffefd5,peachpuff:ffdab9," +
+    "peru:cd853f,pink:ffc0cb,plum:dda0dd,powderblue:b0e0e6,purple:800080,rebeccapurple:663399,red:ff0000," +
+    "rosybrown:bc8f8f,royalblue:4169e1,saddlebrown:8b4513,salmon:fa8072,sandybrown:f4a460,seagreen:2e8b57," +
+    "seashell:fff5ee,sienna:a0522d,silver:c0c0c0,skyblue:87ceeb,slateblue:6a5acd,slategray:708090," +
+    "snow:fffafa,springgreen:00ff7f,steelblue:4682b4,tan:d2b48c,teal:008080,thistle:d8bfd8,tomato:ff6347," +
+    "turquoise:40e0d0,violet:ee82ee,wheat:f5deb3,white:ffffff,whitesmoke:f5f5f5,yellow:ffff00,yellowgreen:9acd32")
+    .split(",").map((s) => {
+      const i = s.indexOf(":");
+      return { name: s.slice(0, i), rgb: hexToRgb("#" + s.slice(i + 1)) };
+    });
+
+  function nearestName({ r, g, b }) {
+    let best = null, bd = Infinity;
+    for (const e of CSS_NAMED) {
+      const d = (e.rgb.r - r) ** 2 + (e.rgb.g - g) ** 2 + (e.rgb.b - b) ** 2;
+      if (d < bd) { bd = d; best = e; }
+    }
+    return bd < 900 ? best.name : null;
+  }
+
+  function wcagLum(c) {
+    const { r, g, b } = hsvToRgb(c.h, c.s, c.v);
+    const f = (x) => { x /= 255; return x <= 0.03928 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4; };
+    return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b);
+  }
+
+  function contrastRatio(a, b) {
+    const l1 = wcagLum(a), l2 = wcagLum(b);
+    const hi = Math.max(l1, l2), lo = Math.min(l1, l2);
+    return (hi + 0.05) / (lo + 0.05);
+  }
+
+  const s2l = (c) => { c /= 255; return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4; };
+  const l2s = (c) => Math.round(255 * clamp(c <= 0.0031308 ? 12.92 * c : 1.055 * Math.cbrt(c) - 0.055, 0, 1));
+
+  function rgbToOklab({ r, g, b }) {
+    const R = s2l(r), G = s2l(g), B = s2l(b);
+    const l = Math.cbrt(0.4122214708 * R + 0.5363325363 * G + 0.0514459929 * B);
+    const m = Math.cbrt(0.2119034982 * R + 0.6806995451 * G + 0.1073969566 * B);
+    const s = Math.cbrt(0.0883024619 * R + 0.2817188376 * G + 0.6299787005 * B);
+    return {
+      L: 0.2104542553 * l + 0.793617785 * m - 0.0040720468 * s,
+      a: 1.9779984951 * l - 2.428592205 * m + 0.4505937099 * s,
+      b: 0.0259040924 * l + 0.7827717662 * m - 0.808675766 * s
+    };
+  }
+
+  function oklabToRgb(o) {
+    const l = (o.L + 0.3963377774 * o.a + 0.2158037573 * o.b) ** 3;
+    const m = (o.L - 0.1055613458 * o.a - 0.0638541728 * o.b) ** 3;
+    const s = (o.L - 0.0894841775 * o.a - 1.291485548 * o.b) ** 3;
+    return {
+      r: l2s(4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s),
+      g: l2s(-1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s),
+      b: l2s(-0.0041960863 * l - 0.7034186147 * m + 0.8526336371 * s)
+    };
+  }
+
+  function blendOklab(c1, c2, t) {
+    const a = rgbToOklab(c1), b = rgbToOklab(c2);
+    return oklabToRgb({ L: a.L + (b.L - a.L) * t, a: a.a + (b.a - a.a) * t, b: a.b + (b.b - a.b) * t });
+  }
+
+  function expandedStops() {
+    const g = state.gradient;
+    const sorted = g.stops.slice().sort((a, b) => a.pos - b.pos);
+    if (!g.smooth) {
+      return sorted.map((s) => ({ p: s.pos, color: s.color }));
+    }
+    const out = [];
+    const STEPS = 10;
+    for (let i = 0; i < sorted.length - 1; i++) {
+      const A = sorted[i], B = sorted[i + 1];
+      out.push({ p: A.pos, color: A.color });
+      if (A.pos === B.pos) continue;
+      const c1 = hsvToRgb(A.color.h, A.color.s, A.color.v);
+      const c2 = hsvToRgb(B.color.h, B.color.s, B.color.v);
+      for (let k = 1; k < STEPS; k++) {
+        const t = k / STEPS;
+        const m = blendOklab(c1, c2, t);
+        const hsv = rgbToHsv(m.r, m.g, m.b);
+        out.push({
+          p: round(A.pos + (B.pos - A.pos) * t, 2),
+          color: { h: hsv.h, s: hsv.s, v: hsv.v, a: A.color.a + (B.color.a - A.color.a) * t }
+        });
+      }
+    }
+    out.push({ p: sorted[sorted.length - 1].pos, color: sorted[sorted.length - 1].color });
+    return out;
+  }
 
   /* ---------------- color math ---------------- */
   const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
@@ -1057,11 +1452,87 @@
 
   function gradientCss() {
     const g = state.gradient;
-    const stops = g.stops.slice().sort((a, b) => a.pos - b.pos)
-      .map((s) => `${cssColor(s.color)} ${s.pos}%`).join(", ");
+    const stops = expandedStops().map((s) => `${cssColor(s.color)} ${s.p}%`).join(", ");
     if (g.type === "radial") return `radial-gradient(${g.shape} at ${g.position}, ${stops})`;
     if (g.type === "conic") return `conic-gradient(from ${g.angle}deg at ${g.position}, ${stops})`;
     return `linear-gradient(${g.angle}deg, ${stops})`;
+  }
+
+  /* ---------------- persistence & sharing ---------------- */
+  const STORE_KEY = "chroma.v1";
+
+  function save() {
+    try {
+      localStorage.setItem(STORE_KEY, JSON.stringify({
+        mode: state.mode, color: state.color, harmonyMode: state.harmonyMode,
+        gradient: state.gradient, selectedStop: state.selectedStop,
+        history: state.history, palettes: state.palettes, contrast: state.contrast
+      }));
+    } catch (e) { /* storage unavailable */ }
+  }
+
+  function validColor(c) {
+    return c && [c.h, c.s, c.v, c.a].every((n) => typeof n === "number" && isFinite(n));
+  }
+
+  function load() {
+    try {
+      const d = JSON.parse(localStorage.getItem(STORE_KEY) || "null");
+      if (!d) return;
+      if (validColor(d.color)) state.color = d.color;
+      if (validColor(d.contrast && d.contrast.fg) && validColor(d.contrast.bg)) state.contrast = d.contrast;
+      if (typeof d.harmonyMode === "string" && HARMONY_MODES[d.harmonyMode]) state.harmonyMode = d.harmonyMode;
+      if (Array.isArray(d.history)) state.history = d.history.filter(validColor);
+      if (Array.isArray(d.palettes)) state.palettes = d.palettes.filter((p) => p.name && Array.isArray(p.colors) && p.colors.every(validColor));
+      const g = d.gradient;
+      if (g && ["linear", "radial", "conic"].includes(g.type) && Array.isArray(g.stops) &&
+          g.stops.length >= 2 && g.stops.every((s) => typeof s.pos === "number" && validColor(s.color))) {
+        state.gradient = {
+          type: g.type,
+          angle: typeof g.angle === "number" ? g.angle : 135,
+          shape: g.shape === "ellipse" ? "ellipse" : "circle",
+          position: typeof g.position === "string" ? g.position : "center",
+          smooth: !!g.smooth,
+          stops: g.stops.map((s) => ({ pos: s.pos, color: s.color }))
+        };
+        state.selectedStop = clamp(d.selectedStop | 0, 0, state.gradient.stops.length - 1);
+      }
+      if (d.mode === "color" || d.mode === "gradient") state.mode = d.mode;
+    } catch (e) { /* corrupted storage */ }
+  }
+
+  function encodeState() {
+    const c = state.color, g = state.gradient;
+    const stops = g.stops.map((s) => `${s.pos}:${s.color.h},${s.color.s},${s.color.v},${round(s.color.a, 2)}`).join(";");
+    return "#s=" + encodeURIComponent(JSON.stringify([
+      [c.h, c.s, c.v, round(c.a, 2)],
+      [g.type, g.angle, g.shape === "ellipse" ? "e" : "c", g.position, g.smooth ? 1 : 0],
+      stops
+    ]));
+  }
+
+  function applyStateHash() {
+    if (location.hash === "#color") { state.mode = "color"; return true; }
+    if (location.hash === "#gradient") { state.mode = "gradient"; return true; }
+    if (!location.hash.startsWith("#s=")) return false;
+    try {
+      const d = JSON.parse(decodeURIComponent(location.hash.slice(3)));
+      const [c, g, stops] = d;
+      if (!Array.isArray(c) || c.length !== 4) return false;
+      state.color = { h: +c[0], s: +c[1], v: +c[2], a: +c[3] };
+      state.gradient.type = g[0];
+      state.gradient.angle = +g[1];
+      state.gradient.shape = g[2] === "e" ? "ellipse" : "circle";
+      state.gradient.position = g[3];
+      state.gradient.smooth = !!g[4];
+      state.gradient.stops = stops.split(";").map((t) => {
+        const [p, h, s, v, a] = t.split(":").flatMap((x) => x.split(","));
+        return { pos: +p, color: { h: +h, s: +s, v: +v, a: +a } };
+      });
+      state.mode = "gradient";
+      state.selectedStop = 0;
+      return true;
+    } catch (e) { return false; }
   }
 
   /* ---------------- shared ui ---------------- */
@@ -1124,14 +1595,16 @@
   };
   /* ---------------- color panel ---------------- */
   const wheelWrap = $("wheelWrap"), wheelCanvas = $("wheelCanvas"), wheelKnob = $("wheelKnob");
-  const triadTri = $("triadTri"), triadPoly = $("triadPoly");
-  const triadDot1 = $("triadDot1"), triadDot2 = $("triadDot2");
+  const harmSvg = $("harmSvg"), harmPoly = $("harmPoly"), wheelDots = $("wheelDots");
   const valueSlider = $("valueSlider"), valueKnob = $("valueKnob");
   const alphaSlider = $("alphaSlider"), alphaFill = $("alphaFill"), alphaKnob = $("alphaKnob");
-  const swatchFill = $("swatchFill"), bigHex = $("bigHex"), bigSub = $("bigSub");
+  const swatchFill = $("swatchFill"), bigHex = $("bigHex"), bigSub = $("bigSub"), bigName = $("bigName");
   const hexInput = $("hexInput"), rgbInput = $("rgbInput"), hslInput = $("hslInput");
   const historyStrip = $("historyStrip");
-  const triadRow = $("triadRow");
+  const harmRow = $("harmRow");
+  const shadeRow = $("shadeRow");
+  const contrastPreview = $("contrastPreview"), ratioVal = $("ratioVal");
+  const fgColor = $("fgColor"), bgColor = $("bgColor");
 
   function drawWheel() {
     const size = wheelCanvas.width;
@@ -1160,49 +1633,66 @@
     const { r, g, b } = hsvToRgb(c.h, c.s, c.v);
 
     const rad = (c.s / 100) * 50;
-    const triadPts = [0, 120, 240].map((off) => {
+    const offs = HARMONY_MODES[state.harmonyMode] === "mono" ? [0] : HARMONY_MODES[state.harmonyMode];
+    const pts = offs.map((off) => {
       const a = ((c.h + off - 90) * Math.PI) / 180;
       return [50 + rad * Math.cos(a), 50 + rad * Math.sin(a)];
     });
-    wheelKnob.style.left = triadPts[0][0] + "%";
-    wheelKnob.style.top = triadPts[0][1] + "%";
-    triadDot1.style.left = triadPts[1][0] + "%";
-    triadDot1.style.top = triadPts[1][1] + "%";
-    triadDot2.style.left = triadPts[2][0] + "%";
-    triadDot2.style.top = triadPts[2][1] + "%";
-    triadPoly.setAttribute("points", triadPts.map((p) => p.join(",")).join(" "));
-    triadTri.style.opacity = c.s < 4 ? "0" : "1";
+    wheelKnob.style.left = pts[0][0] + "%";
+    wheelKnob.style.top = pts[0][1] + "%";
+    harmPoly.setAttribute("points", pts.map((p) => p.join(",")).join(" "));
+    while (wheelDots.children.length > offs.length - 1) wheelDots.lastChild.remove();
+    while (wheelDots.children.length < offs.length - 1) wheelDots.appendChild(Object.assign(document.createElement("div"), { className: "wheel-dot" }));
+    for (let i = 1; i < pts.length; i++) {
+      wheelDots.children[i - 1].style.left = pts[i][0] + "%";
+      wheelDots.children[i - 1].style.top = pts[i][1] + "%";
+    }
+    harmSvg.style.opacity = c.s < 4 ? "0" : "1";
     wheelCanvas.style.filter = "brightness(" + c.v / 100 + ")";
+    wheelWrap.setAttribute("aria-valuetext", `hue ${c.h}, saturation ${c.s}`);
 
     const full = hsvToRgb(c.h, c.s, 100);
     valueSlider.style.background =
       `linear-gradient(to right, #000, rgb(${full.r},${full.g},${full.b}))`;
     valueKnob.style.left = c.v + "%";
+    valueSlider.setAttribute("aria-valuenow", c.v);
 
     alphaFill.style.background =
       `linear-gradient(to right, rgba(${r},${g},${b},0), rgba(${r},${g},${b},1))`;
     alphaKnob.style.left = c.a * 100 + "%";
+    alphaSlider.setAttribute("aria-valuenow", Math.round(c.a * 100));
 
     swatchFill.style.background = c.a < 1 ? `rgba(${r},${g},${b},${round(c.a, 2)})` : rgbToHex({ r, g, b });
     bigHex.textContent = formatColor(c, "hex");
     bigSub.textContent = formatColor(c, "rgb");
+    const nm = nearestName({ r, g, b });
+    bigName.textContent = nm ? "≈ " + nm : "";
 
     if (document.activeElement !== hexInput) hexInput.value = formatColor(c, "hex");
     if (document.activeElement !== rgbInput) rgbInput.value = formatColor(c, "rgb");
     if (document.activeElement !== hslInput) hslInput.value = formatColor(c, "hsl");
 
     updateAmbient();
-    renderTriads();
+    renderHarmony();
+    renderShades();
+    renderContrast();
+    save();
   }
 
-  function triadColors() {
+  function harmonyColors() {
     const c = state.color;
-    return [0, 120, 240].map((off) => ({ h: (c.h + off) % 360, s: c.s, v: c.v, a: c.a }));
+    const mode = HARMONY_MODES[state.harmonyMode] || HARMONY_MODES.triadic;
+    if (mode === "mono") {
+      return [1, 0.75, 0.52, 0.32, 0.16].map((k) => ({
+        h: c.h, s: c.s, v: clamp(Math.round(c.v * k), 0, 100), a: c.a
+      }));
+    }
+    return mode.map((off) => ({ h: (c.h + off + 360) % 360, s: c.s, v: c.v, a: c.a }));
   }
 
-  function renderTriads() {
-    triadRow.innerHTML = "";
-    triadColors().forEach((tc, i) => {
+  function renderHarmony() {
+    harmRow.innerHTML = "";
+    harmonyColors().forEach((tc, i) => {
       const btn = document.createElement("button");
       btn.type = "button";
       btn.className = "triad" + (i === 0 ? " active" : "");
@@ -1221,14 +1711,80 @@
         state.color = { h: tc.h, s: tc.s, v: tc.v, a: tc.a };
         renderColor();
       });
-      triadRow.appendChild(btn);
+      harmRow.appendChild(btn);
     });
   }
 
-  $("copyTriads").addEventListener("click", () => {
-    const hexes = triadColors().map((tc) => formatColor(tc, "hex"));
-    copyText(hexes.join(", "), '<span class="check">✓</span> Triad copied: ' + hexes.join(", "));
+  $("harmMode").addEventListener("change", (e) => {
+    state.harmonyMode = e.target.value;
+    renderColor();
+  });
+
+  $("copyHarmony").addEventListener("click", () => {
+    const hexes = harmonyColors().map((tc) => formatColor(tc, "hex"));
+    copyText(hexes.join(", "), '<span class="check">✓</span> Harmony copied: ' + hexes.join(", "));
     pushHistory(state.color);
+  });
+
+  function shadeList() {
+    const c = state.color;
+    const { r, g, b } = hsvToRgb(c.h, c.s, c.v);
+    const factors = [0.72, 0.45, 0.2, 0, -0.25, -0.5, -0.75];
+    return factors.map((t) => {
+      const tgt = t >= 0 ? 255 : 0, k = Math.abs(t);
+      return { r: Math.round(r + (tgt - r) * k), g: Math.round(g + (tgt - g) * k), b: Math.round(b + (tgt - b) * k) };
+    });
+  }
+
+  function renderShades() {
+    shadeRow.innerHTML = "";
+    shadeList().forEach((rgb) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "shade";
+      btn.title = rgbToHex(rgb);
+      const fill = document.createElement("div");
+      fill.className = "fill";
+      fill.style.background = rgbToHex(rgb);
+      btn.appendChild(fill);
+      btn.addEventListener("click", () => {
+        state.color = { ...rgbToHsv(rgb.r, rgb.g, rgb.b), a: state.color.a };
+        renderColor();
+      });
+      shadeRow.appendChild(btn);
+    });
+  }
+
+  $("copyShades").addEventListener("click", () => {
+    copyText(shadeList().map(rgbToHex).join(", "), '<span class="check">✓</span> Shades copied');
+    pushHistory(state.color);
+  });
+
+  function renderContrast() {
+    const { fg, bg } = state.contrast;
+    const ratio = contrastRatio(fg, bg);
+    contrastPreview.style.color = cssColor(fg);
+    contrastPreview.style.background = cssColor(bg);
+    ratioVal.textContent = round(ratio, 2) + " : 1";
+    const mark = (el, pass) => {
+      el.classList.toggle("pass", pass);
+      el.classList.toggle("fail", !pass);
+    };
+    mark($("aaBadge"), ratio >= 4.5);
+    mark($("aaLargeBadge"), ratio >= 3);
+    mark($("aaaBadge"), ratio >= 7);
+    const hexOf = (c) => rgbToHex(hsvToRgb(c.h, c.s, c.v)).toLowerCase();
+    if (document.activeElement !== fgColor) fgColor.value = hexOf(fg);
+    if (document.activeElement !== bgColor) bgColor.value = hexOf(bg);
+  }
+
+  const hexToHsvState = (hex) => { const { r, g, b } = hexToRgb(hex); return { ...rgbToHsv(r, g, b), a: 1 }; };
+  fgColor.addEventListener("input", () => { state.contrast.fg = hexToHsvState(fgColor.value); renderContrast(); save(); });
+  bgColor.addEventListener("input", () => { state.contrast.bg = hexToHsvState(bgColor.value); renderContrast(); save(); });
+  $("useAsBg").addEventListener("click", () => {
+    state.contrast.bg = { ...state.color, a: 1 };
+    renderContrast();
+    save();
   });
 
   drag(wheelWrap, (e) => {
@@ -1339,10 +1895,127 @@
   $("saveBtn").addEventListener("click", () => {
     pushHistory(state.color);
     showToast('<span class="check">✓</span> Saved to history');
+    save();
   });
   $("clearHistory").addEventListener("click", () => {
     state.history = [];
     renderHistory();
+    save();
+  });
+
+  if ("EyeDropper" in window) {
+    const eb = $("eyedropperBtn");
+    eb.hidden = false;
+    eb.addEventListener("click", async () => {
+      try {
+        const { sRGBHex } = await new EyeDropper().open();
+        const { r, g, b } = hexToRgb(sRGBHex);
+        state.color = { ...rgbToHsv(r, g, b), a: state.color.a };
+        renderColor();
+      } catch (e) { /* user cancelled */ }
+    });
+  }
+
+  $("shareBtn").addEventListener("click", () => {
+    const url = location.origin + location.pathname + encodeState();
+    copyText(url, '<span class="check">✓</span> Link copied');
+  });
+
+  $("savePalette").addEventListener("click", () => {
+    const colors = harmonyColors();
+    const name = prompt("Palette name:", state.harmonyMode);
+    if (!name) return;
+    state.palettes.unshift({ name, colors });
+    if (state.palettes.length > 12) state.palettes.pop();
+    renderPalettes();
+    save();
+    showToast('<span class="check">✓</span> Palette saved');
+  });
+
+  function renderPalettes() {
+    const row = $("paletteRow");
+    row.innerHTML = "";
+    if (!state.palettes.length) {
+      row.innerHTML = '<span class="palette-empty">Save a harmony set to reuse it later.</span>';
+      return;
+    }
+    state.palettes.forEach((p, pi) => {
+      const chip = document.createElement("div");
+      chip.className = "pchip";
+      const strip = document.createElement("div");
+      strip.className = "pstrip";
+      p.colors.forEach((c) => {
+        const sw = document.createElement("button");
+        sw.type = "button";
+        sw.className = "psw";
+        sw.title = formatColor(c, "hex");
+        const fill = document.createElement("div");
+        fill.className = "fill";
+        fill.style.background = cssColor(c);
+        sw.appendChild(fill);
+        sw.addEventListener("click", () => {
+          state.color = { h: c.h, s: c.s, v: c.v, a: c.a };
+          renderColor();
+        });
+        strip.appendChild(sw);
+      });
+      const nameEl = document.createElement("span");
+      nameEl.className = "pname";
+      nameEl.textContent = p.name;
+      nameEl.title = "Apply first color";
+      nameEl.addEventListener("click", () => {
+        const c = p.colors[0];
+        state.color = { h: c.h, s: c.s, v: c.v, a: c.a };
+        renderColor();
+      });
+      const del = document.createElement("button");
+      del.type = "button";
+      del.className = "pdel";
+      del.textContent = "×";
+      del.title = "Delete palette";
+      del.addEventListener("click", () => {
+        state.palettes.splice(pi, 1);
+        renderPalettes();
+        save();
+      });
+      chip.append(strip, nameEl, del);
+      row.appendChild(chip);
+    });
+  }
+
+  function keyNav(el, get, set) {
+    el.addEventListener("keydown", (e) => {
+      let used = true;
+      const step = e.shiftKey ? 10 : 2;
+      if (e.key === "ArrowRight" || e.key === "ArrowUp") set(1, step);
+      else if (e.key === "ArrowLeft" || e.key === "ArrowDown") set(-1, step);
+      else used = false;
+      if (used) { e.preventDefault(); renderColor(); }
+    });
+  }
+
+  wheelWrap.addEventListener("keydown", (e) => {
+    const step = e.shiftKey ? 10 : 2;
+    let used = true;
+    if (e.key === "ArrowRight") state.color.h = (state.color.h + step) % 360;
+    else if (e.key === "ArrowLeft") state.color.h = (state.color.h - step + 360) % 360;
+    else if (e.key === "ArrowUp") state.color.s = clamp(state.color.s + step, 0, 100);
+    else if (e.key === "ArrowDown") state.color.s = clamp(state.color.s - step, 0, 100);
+    else used = false;
+    if (used) { e.preventDefault(); e.stopPropagation(); renderColor(); }
+  });
+
+  keyNav(valueSlider, null, (dir, step) => { state.color.v = clamp(state.color.v + dir * step, 0, 100); });
+  keyNav(alphaSlider, null, (dir, step) => { state.color.a = clamp(round(state.color.a + dir * step / 100, 2), 0, 1); });
+
+  window.addEventListener("keydown", (e) => {
+    const t = e.target;
+    if (t && (["INPUT", "TEXTAREA", "SELECT", "BUTTON"].includes(t.tagName) || t.isContentEditable)) return;
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.code === "Space") { e.preventDefault(); $("randomBtn").click(); }
+    else if (e.key === "1") document.querySelector('.tabs button[data-mode="color"]').click();
+    else if (e.key === "2") document.querySelector('.tabs button[data-mode="gradient"]').click();
+    else if (e.key === "c" || e.key === "C") document.querySelector('[data-copy="hex"]').click();
   });
 
   /* ---------------- gradient panel ---------------- */
@@ -1350,6 +2023,8 @@
   const angleRange = $("angleRange"), angleVal = $("angleVal");
   const stopBar = $("stopBar");
   const stopColor = $("stopColor"), stopHex = $("stopHex"), stopPos = $("stopPos");
+  const stopAlpha = $("stopAlpha");
+  const smoothToggle = $("smoothToggle"), presetRow = $("presetRow");
   const cssCode = $("cssCode");
 
   function renderGradient() {
@@ -1357,15 +2032,20 @@
     const css = gradientCss();
     gpreview.style.background = css;
 
-    const stopsSorted = g.stops.slice().sort((a, b) => a.pos - b.pos)
-      .map((s) => `${cssColor(s.color)} ${s.pos}%`).join(", ");
-    stopBar.style.background = `linear-gradient(90deg, ${stopsSorted})`;
+    stopBar.style.background =
+      `linear-gradient(90deg, ${expandedStops().map((s) => `${cssColor(s.color)} ${s.p}%`).join(", ")})`;
 
     $("angleCtl").hidden = !(g.type === "linear" || g.type === "conic");
     $("shapeCtl").hidden = g.type !== "radial";
     $("posCtl").hidden = g.type === "linear";
     angleRange.value = g.angle;
     angleVal.textContent = g.angle + "°";
+    document.querySelectorAll("[data-gtype]").forEach((b) => b.classList.toggle("active", b.dataset.gtype === g.type));
+    document.querySelectorAll("[data-shape]").forEach((b) => b.classList.toggle("active", b.dataset.shape === g.shape));
+    $("posSelect").value = g.position;
+    smoothToggle.checked = !!g.smooth;
+    gpreview.classList.toggle("dial", g.type === "linear" || g.type === "conic");
+    syncPresetActive();
 
     syncStops();
     renderStopEditor();
@@ -1374,6 +2054,7 @@
       `<span class="prop">background</span>: <span class="val">${css}</span>;`;
 
     updateAmbient();
+    save();
   }
 
   function syncStops() {
@@ -1499,7 +2180,154 @@
     stopColor.value = rgbToHex({ r, g: gg, b }).toLowerCase();
     if (document.activeElement !== stopHex) stopHex.value = rgbToHex({ r, g: gg, b });
     if (document.activeElement !== stopPos) stopPos.value = s.pos;
+    if (document.activeElement !== stopAlpha) stopAlpha.value = Math.round(s.color.a * 100);
   }
+
+  stopAlpha.addEventListener("input", () => {
+    const s = state.gradient.stops[state.selectedStop];
+    if (!s) return;
+    s.color.a = clamp(parseInt(stopAlpha.value, 10) / 100, 0, 1);
+    renderGradient();
+  });
+
+  function gSig(g) {
+    return [g.type, g.angle, g.shape, g.position,
+      g.stops.slice().sort((a, b) => a.pos - b.pos).map((s) => s.pos + ":" + cssColor(s.color)).join(";")].join("|");
+  }
+
+  function syncPresetActive() {
+    const sig = gSig(state.gradient);
+    presetRow.querySelectorAll(".preset").forEach((btn) => {
+      const p = GRADIENT_PRESETS[+btn.dataset.idx];
+      btn.classList.toggle("active", gSig(p) === sig);
+    });
+  }
+
+  function renderPresets() {
+    presetRow.innerHTML = "";
+    GRADIENT_PRESETS.forEach((p, i) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "preset";
+      btn.dataset.idx = i;
+      const g = document.createElement("div");
+      g.className = "pg";
+      const stops = p.stops.map((s) => `${cssColor(s.color)} ${s.pos}%`).join(", ");
+      g.style.background = p.type === "radial" ? `radial-gradient(circle, ${stops})`
+        : p.type === "conic" ? `conic-gradient(from ${p.angle}deg, ${stops})`
+        : `linear-gradient(${p.angle}deg, ${stops})`;
+      const n = document.createElement("span");
+      n.className = "pn";
+      n.textContent = p.name;
+      btn.append(g, n);
+      btn.addEventListener("click", () => {
+        state.gradient = {
+          type: p.type, angle: p.angle, shape: p.shape, position: p.position, smooth: false,
+          stops: p.stops.map((s) => ({ pos: s.pos, color: { h: s.color.h, s: s.color.s, v: s.color.v, a: s.color.a } }))
+        };
+        state.selectedStop = 0;
+        renderGradient();
+      });
+      presetRow.appendChild(btn);
+    });
+  }
+
+  smoothToggle.addEventListener("change", () => {
+    state.gradient.smooth = smoothToggle.checked;
+    renderGradient();
+  });
+
+  drag(gpreview, (e) => {
+    const g = state.gradient;
+    if (g.type !== "linear" && g.type !== "conic") return;
+    const r = gpreview.getBoundingClientRect();
+    let a = (Math.atan2(e.clientX - r.left - r.width / 2, -(e.clientY - r.top - r.height / 2)) * 180) / Math.PI;
+    if (a < 0) a += 360;
+    g.angle = Math.round(a);
+    renderGradient();
+  });
+
+  function numericStops() {
+    return expandedStops().map((s) => {
+      const { r, g, b } = hsvToRgb(s.color.h, s.color.s, s.color.v);
+      return { p: s.p / 100, r, g, b, a: s.color.a };
+    });
+  }
+
+  function positionXY(pos, w, h) {
+    return [
+      pos.includes("left") ? 0 : pos.includes("right") ? w : w / 2,
+      pos.includes("top") ? 0 : pos.includes("bottom") ? h : h / 2
+    ];
+  }
+
+  function farthestR(cx, cy, w, h) {
+    return Math.hypot(Math.max(cx, w - cx), Math.max(cy, h - cy));
+  }
+
+  function buildCanvasGradient(ctx, w, h) {
+    const g = state.gradient;
+    const list = numericStops();
+    let grad;
+    if (g.type === "linear") {
+      const rad = (g.angle * Math.PI) / 180;
+      const dx = Math.sin(rad), dy = -Math.cos(rad);
+      const len = Math.abs(w * dx) + Math.abs(h * dy);
+      grad = ctx.createLinearGradient(w / 2 - dx * len / 2, h / 2 - dy * len / 2, w / 2 + dx * len / 2, h / 2 + dy * len / 2);
+    } else if (g.type === "radial") {
+      const [cx, cy] = positionXY(g.position, w, h);
+      grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, farthestR(cx, cy, w, h));
+    } else {
+      const [cx, cy] = positionXY(g.position, w, h);
+      grad = ctx.createConicGradient
+        ? ctx.createConicGradient(((g.angle - 90) * Math.PI) / 180, cx, cy)
+        : ctx.createLinearGradient(0, 0, w, h);
+    }
+    for (const s of list) grad.addColorStop(clamp(s.p, 0, 1), `rgba(${s.r},${s.g},${s.b},${round(s.a, 3)})`);
+    return grad;
+  }
+
+  function downloadUrl(url, name) {
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = name;
+    a.click();
+  }
+
+  $("exportPng").addEventListener("click", () => {
+    const cv = document.createElement("canvas");
+    cv.width = 1200; cv.height = 675;
+    const ctx = cv.getContext("2d");
+    ctx.fillStyle = buildCanvasGradient(ctx, 1200, 675);
+    ctx.fillRect(0, 0, 1200, 675);
+    downloadUrl(cv.toDataURL("image/png"), "chroma-gradient.png");
+    showToast('<span class="check">✓</span> PNG downloaded');
+  });
+
+  $("exportSvg").addEventListener("click", () => {
+    const g = state.gradient;
+    if (g.type === "conic") {
+      showToast("Conic → use PNG export");
+      return;
+    }
+    const w = 800, h = 450;
+    const stops = numericStops().map((s) =>
+      `<stop offset="${round(s.p * 100, 2)}%" stop-color="rgb(${s.r},${s.g},${s.b})"${s.a < 1 ? ` stop-opacity="${round(s.a, 2)}"` : ""}/>`
+    ).join("");
+    let def;
+    if (g.type === "linear") {
+      const rad = (g.angle * Math.PI) / 180;
+      const dx = Math.sin(rad), dy = -Math.cos(rad);
+      const len = Math.abs(w * dx) + Math.abs(h * dy);
+      def = `<linearGradient id="g" gradientUnits="userSpaceOnUse" x1="${w/2 - dx*len/2}" y1="${h/2 - dy*len/2}" x2="${w/2 + dx*len/2}" y2="${h/2 + dy*len/2}">${stops}</linearGradient>`;
+    } else {
+      const [cx, cy] = positionXY(g.position, w, h);
+      def = `<radialGradient id="g" gradientUnits="userSpaceOnUse" cx="${cx}" cy="${cy}" r="${farthestR(cx, cy, w, h)}">${stops}</radialGradient>`;
+    }
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}"><defs>${def}</defs><rect width="100%" height="100%" fill="url(#g)"/></svg>`;
+    downloadUrl("data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg), "chroma-gradient.svg");
+    showToast('<span class="check">✓</span> SVG downloaded');
+  });
 
   stopColor.addEventListener("input", () => {
     const s = state.gradient.stops[state.selectedStop];
@@ -1562,26 +2390,30 @@
   });
 
   /* ---------------- tabs ---------------- */
+  function applyTab(mode) {
+    state.mode = mode;
+    document.querySelectorAll(".tabs button").forEach((b) => b.classList.toggle("active", b.dataset.mode === mode));
+    $("colorPanel").hidden = mode !== "color";
+    $("gradientPanel").hidden = mode !== "gradient";
+    if (mode === "color") renderColor();
+    else renderGradient();
+  }
+
   document.querySelectorAll(".tabs button").forEach((btn) => {
     btn.addEventListener("click", () => {
-      document.querySelectorAll(".tabs button").forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-      state.mode = btn.dataset.mode;
-      history.replaceState(null, "", "#" + state.mode);
-      $("colorPanel").hidden = state.mode !== "color";
-      $("gradientPanel").hidden = state.mode !== "gradient";
-      if (state.mode === "color") renderColor();
-      else renderGradient();
+      try { history.replaceState(null, "", "#" + btn.dataset.mode); } catch (e) { /* file:// */ }
+      applyTab(btn.dataset.mode);
     });
   });
 
   /* ---------------- init ---------------- */
+  load();
+  applyStateHash();
   drawWheel();
-  renderColor();
-  renderGradient();
-  if (location.hash === "#gradient") {
-    document.querySelector('.tabs button[data-mode="gradient"]').click();
-  }
+  renderPresets();
+  renderPalettes();
+  $("harmMode").value = state.harmonyMode;
+  applyTab(state.mode);
 })();
 </script>
 </body>

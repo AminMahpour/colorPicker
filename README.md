@@ -2,6 +2,8 @@
 
 A beautiful, dependency-free color and gradient picker that lives in a single HTML file. No build step, no frameworks, no network requests — just open it in a browser.
 
+Try it live: see the GitHub Pages deployment below.
+
 ## Quick start
 
 ```bash
@@ -15,47 +17,63 @@ python3 -m http.server 8000
 # → http://localhost:8000
 ```
 
-Deep links: `index.html#color` and `index.html#gradient` open the respective tab.
-
 ## Features
 
 ### Color tab
-- **Color wheel** — hue around the circle (red at top), saturation from center to edge, with a draggable knob
-- **Triad overlay** — a live triangle + marker dots on the wheel showing the current color's triadic harmonies (h, h+120°, h+240°); fades out near zero saturation
-- **Value & alpha sliders** — the wheel dims to match the selected value
-- **Synced inputs** — HEX, RGB, and HSL fields are all editable and keep each other in sync (alpha-aware: `#RRGGBBAA`, `rgba()`, `hsla()`)
-- **Copy buttons** — copy as HEX, RGB, HSL, or a ready-to-paste `background:` CSS declaration
-- **Color triads** — the three triad colors as cards: click one to make it the new base color, or "Copy all" to copy the full set
-- **History** — copied/saved colors are collected in a clickable strip (deduped, max 18)
-- **Random color** button
+- **Color wheel** — hue around the circle (red at top), saturation from center to edge; keyboard-accessible (arrow keys, Shift for bigger steps)
+- **Harmony modes** — complementary, analogous, split-complementary, tetradic, triadic, and monochromatic. The harmony is drawn on the wheel as a polygon + dots and as clickable color cards (click any card to adopt it)
+- **Shades & tints** — 7 swatches mixing the current color toward white/black; click to adopt, copy all
+- **Named color hint** — shows the nearest CSS color name (e.g. `≈ tomato`)
+- **Value & alpha sliders** — the wheel dims to match the selected value (exact via `brightness()` filter)
+- **Contrast checker** — WCAG ratio with AA / AA-Large / AAA pass-fail badges; pick text/background colors or set the background to the current color
+- **Synced inputs** — HEX, RGB, and HSL fields stay in sync, alpha-aware (`#RRGGBBAA`, `rgba()`, `hsla()`)
+- **Eyedropper** — native `EyeDropper` API on supported browsers (Chrome/Edge)
+- **History & palettes** — copied colors are collected; save any harmony as a named palette (persisted)
+- **Random color** — click, spacebar, or the button
 
 ### Gradient tab
-- **Types** — linear, radial, and conic
-- **Controls** — angle (linear/conic), shape circle/ellipse (radial), and position
-- **Multi-stop editor** — up to 8 stops:
-  - click the bar to add a stop (color interpolated between neighbors)
-  - drag a stop to reposition
-  - double-click a stop (or use the button) to remove
-  - edit the selected stop's color, hex, and position
-- **Generated CSS** — live `background: linear-gradient(...)` output with one-click copy
+- **Types** — linear, radial (circle/ellipse + position), conic
+- **Angle dial** — drag directly on the preview, or use the slider
+- **Multi-stop editor** — up to 8 stops: click the bar to add (color interpolated), drag to move, double-click to remove; per-stop color, hex, position, and alpha
+- **Smooth (OKLab) interpolation** — perceptual stop blending to avoid muddy midtones, emitted as extra CSS stops
+- **Presets** — six curated starting gradients
+- **Exports** — copyable CSS, PNG download (canvas), SVG download
 
-### Design
-- Dark glassmorphism UI with an ambient background glow that tracks the active color
-- Touch and mouse support via Pointer Events
-- Fully responsive (desktop, tablet, mobile)
-- Zero dependencies — plain HTML, CSS, and JavaScript in one file
+### Everywhere
+- **Persistence** — state, history, palettes, and contrast setup survive reloads via `localStorage`
+- **Shareable URLs** — 🔗 Share encodes the full app state in the URL hash
+- **Keyboard shortcuts** — `1`/`2` switch tabs, `Space` picks a random color, `C` copies the hex
+- **Design** — dark glassmorphism UI, ambient glow tracking the active color, fully responsive, touch-friendly (Pointer Events)
+- **Zero dependencies** — plain HTML, CSS, and JavaScript in one file
 
 ## Project structure
 
 ```
 colorPicker/
-└── index.html   # the entire app (markup + styles + logic)
+├── index.html              # the entire app (markup + styles + logic)
+├── tests/smoke.mjs         # headless-Chrome smoke test over CDP
+└── .github/workflows/
+    ├── ci.yml              # syntax check + smoke test
+    └── pages.yml           # deploy to GitHub Pages
 ```
+
+## GitHub Pages
+
+Repo → Settings → Pages → Source: **GitHub Actions**. After that, every push to `main` deploys the app via the `Deploy Pages` workflow (static file, no build).
 
 ## Tech notes
 
-- Vanilla JS, single IIFE, no external code
-- Color math: HSV ↔ RGB ↔ HEX ↔ HSL conversions in pure JS
-- The wheel is a canvas painted once at full value; the current value is applied with a CSS `brightness()` filter (exact for HSV, GPU-accelerated, no repaints)
-- The triad triangle is an SVG overlay positioned in percentage coordinates
-- Gradient stops use pointer capture for smooth dragging on both desktop and touch
+- Vanilla JS in a single IIFE, no external code
+- Color math: HSV ↔ RGB ↔ HEX ↔ HSL, OKLab (for smooth gradients), WCAG luminance, nearest CSS-named-color lookup
+- The wheel is a canvas painted once at full value; value is applied with a GPU `brightness()` filter (exact for HSV)
+- The harmony overlay is an SVG polygon + dots in percentage coordinates
+- Gradient stops use pointer capture for smooth desktop + touch dragging
+- CI runs `node --check` on the inline script plus `tests/smoke.mjs`, which drives a headless Chrome via the DevTools Protocol
+
+## Testing
+
+```bash
+node tests/smoke.mjs
+```
+
+Requires Google Chrome or Chromium locally; CI uses the Chrome preinstalled on GitHub runners.
