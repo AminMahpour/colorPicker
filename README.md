@@ -59,7 +59,7 @@ colorPicker/
 
 ## GitHub Pages
 
-Every push to `main` deploys the app via the `Deploy Pages` workflow (static file, no build). The workflow auto-enables Pages on first run; to host on a custom domain, set it under Repo → Settings → Pages.
+Pages deploys are **manual** while the repo is private on a free plan (GitHub doesn't allow Pages for private repos there). To get a live URL, either make the repo public or upgrade the plan, then switch the trigger in `.github/workflows/pages.yml` back to `push: branches: [main]` (or run the `Deploy Pages` workflow manually from the Actions tab).
 
 ## Tech notes
 
