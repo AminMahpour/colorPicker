@@ -2,8 +2,6 @@
 
 A beautiful, dependency-free color and gradient picker that lives in a single HTML file. No build step, no frameworks, no network requests — just open it in a browser.
 
-Try it live: see the GitHub Pages deployment below.
-
 ## Quick start
 
 ```bash
