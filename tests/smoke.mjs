@@ -131,6 +131,13 @@ try {
     return after > before;
   })()`), "OKLab smooth expands CSS output");
 
+  assert(await evaluate(`(() => {
+    document.querySelector('.tabs button[data-mode="image"]').click();
+    return !document.getElementById('imagePanel').hidden &&
+      document.getElementById('colorPanel').hidden &&
+      document.getElementById('imgSwatches').textContent.includes('Upload an image');
+  })()`), "image tab switches and shows empty state");
+
   await sleep(300);
   assert(exceptions.length === 0, "no page exceptions");
 

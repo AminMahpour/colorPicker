@@ -37,10 +37,15 @@ python3 -m http.server 8000
 - **Presets** — six curated starting gradients
 - **Exports** — copyable CSS, PNG download (canvas), SVG download
 
+### Image tab
+- **Upload** — drag & drop or file picker; the image is decoded locally in the browser, never uploaded
+- **Dominant colors** — median-cut + k-means quantization (5/6/8/12 colors) over a downscaled copy of the image
+- **Swatches** — click to adopt a color (and copy its hex), copy all, or save the set as a named palette
+
 ### Everywhere
 - **Persistence** — state, history, palettes, and contrast setup survive reloads via `localStorage`
 - **Shareable URLs** — 🔗 Share encodes the full app state in the URL hash
-- **Keyboard shortcuts** — `1`/`2` switch tabs, `Space` picks a random color, `C` copies the hex
+- **Keyboard shortcuts** — `1`/`2`/`3` switch tabs, `Space` picks a random color, `C` copies the hex
 - **Design** — dark glassmorphism UI, ambient glow tracking the active color, fully responsive, touch-friendly (Pointer Events)
 - **Zero dependencies** — plain HTML, CSS, and JavaScript in one file
 
